@@ -15,23 +15,22 @@
 
 
 / {
-
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
                         label = "COLEMAK";
-    // -----------------------------------------------------------------------------------------
-    // |  `   |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  ;  | - |
-    // | CTRL |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  | ' |
-    // | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | \ |
-    //                    | GUI | SHFT|BSPC|    | ENT | SPC | TAB |
-                            bindings = <
-       &kp GRAVE &kp Q &kp W &kp F &kp P &kp B             &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp MINUS
-       &kp LCTL  &kp A &kp R &kp S &kp T &kp G             &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
-       &kp LALT  &kp Z &kp X &kp C &kp D &kp V             &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-                      &kp LGUI &kp LSHFT &lt NUM BSPC      &lt NAVI RET &kp SPC &kp TAB
-                            >;
-                    };
-    };
+// -----------------------------------------------------------------------------------------
+// |  `   |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  ;  | - |
+// | CTRL |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  | ' |
+// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | \ |
+//                    | GUI | SHFT|BSPC|    | ENT | SPC | TAB |
+                        bindings = <
+   &kp GRAVE &kp Q &kp W &kp F &kp P &kp B             &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp MINUS
+   &kp LCTL  &kp A &kp R &kp S &kp T &kp G             &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
+   &kp LALT  &kp Z &kp X &kp C &kp D &kp V             &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
+                  &kp LGUI &kp LSHFT &lt NUM BSPC      &lt NAVI RET &kp SPC &kp TAB
+                        >;
+                };
+        };
 };
