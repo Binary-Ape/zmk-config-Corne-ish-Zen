@@ -11,8 +11,8 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define COLEMAK 0
-
-
+#define NUM 1
+#define NAVI 2
 
 / {
         keymap {
