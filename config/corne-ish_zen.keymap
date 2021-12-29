@@ -13,37 +13,97 @@
 #define COLEMAK 0
 #define NUMPAD 1
 #define NAVI 2
+#define ADJUST 3
+
+//  LAYER TEMPLATE
+//                navi_layer {
+//                        label = "Navi";
+// -----------------------------------------------------------------------------------------
+// |  |  |  |  |  |  |     |  |  |  |  |  |  |
+// |  |  |  |  |  |  |     |  |  |  |  |  |  |
+// |  |  |  |  |  |  |     |  |  |  |  |  |  |
+//          |  |  |  |     |  |  |  |
+//
+//                        bindings = <
+//   &kp &kp &kp &kp &kp &kp                &kp &kp &kp &kp &kp &kp
+//   &kp &kp &kp &kp &kp &kp                &kp &kp &kp &kp &kp &kp
+//   &kp &kp &kp &kp &kp &kp                &kp &kp &kp &kp &kp &kp
+//               &kp &kp &kp                &kp &kp &kp
+//                        >;
+//                };
+
+
 
 / {
+        conditional_layers {
+            compatible = "zmk,conditional-layers";
+            tri_layer {
+                if-layers = <1 2>;
+                then-layer = <3>;
+            };
+        };
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
-                        label = "COLEMAK";
+                        label = "Colemak";
 // -----------------------------------------------------------------------------------------
-// |  `   |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  ;  | - |
-// | CTRL |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  | ' |
-// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | \ |
-//                    | GUI | SHFT|BSPC|    | ENT | SPC | TAB |
+// |  `   |  Q  |  W  |  F  |  P  |  B  |                |  J  |  L  |  U  |  Y  |  ;: | -_ |
+// | CTRL |  A  |  R  |  S  |  T  |  G  |                |  M  |  N  |  E  |  I  |  O  | '" |
+// | LALT |  Z  |  X  |  C  |  D  |  V  |                |  K  |  H  |  ,< |  .> |  /? | |\ |
+//                    | GUI | SHFT| BSPC|                | ENT | SPC | TAB |
+
                         bindings = <
-   &kp GRAVE &kp Q &kp W &kp F &kp P &kp B             &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp MINUS
-   &kp LCTL  &kp A &kp R &kp S &kp T &kp G             &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
-   &kp LALT  &kp Z &kp X &kp C &kp D &kp V             &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
-                  &kp LGUI &kp LSHFT &lt NUMPAD BSPC      &lt NAVI RET &kp SPC &kp TAB
+   &kp GRAVE &kp Q &kp W &kp F &kp P &kp B                 &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp MINUS
+   &kp LCTL  &kp A &kp R &kp S &kp T &kp G                 &kp M &kp N  &kp E     &kp I   &kp O    &kp APOS
+   &kp LALT  &kp Z &kp X &kp C &kp D &kp V                 &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp BSLH
+                   &kp LGUI &kp LSHFT &lt NUMPAD BSPC      &lt NAVI RET &kp SPC &kp TAB
                         >;
                 };
 
                 numpad_layer {
-                        label = "NUMPAD";
+                        label = "Numpad";
+// -----------------------------------------------------------------------------------------
+// | ESC  |  !  |  @  |  {  |  }  |  &  |   |  -  |  7  |  8  |  9  |  /  | - |
+// | CTRL |  #  |  $  |  (  |  )  |  *  |   |  +  |  4  |  5  |  6  |  *  | ' |
+// | SHFT |  %  |  ^  |  [  |  ]  |  =  |   |  1  |  1  |  2  |  3  | ENT | \ |
+//                    | GUI | SHFT| BSPC|    | ENT | SPC | TAB |
+
+                        bindings = <
+   &kp ESC   &kp EXCL  &kp AT    &kp LBRC &kp RBRC &kp AMPS        &kp KP_MINUS &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_DIVIDE   &kp
+   &kp LCTL  &kp HASH  &kp DLLR  &kp LPAR &kp RPAR &kp ASTRK       &kp KP_PLUS  &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_MULTIPLY &kp
+   &kp LALT  &kp PRCNT &kp CARET &kp LBKT &kp RBKT &kp EQUAL       &kp KP_EQUAL &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RETURN      &kp
+                                 &trans   &trans   &trans          &trans       &trans    &trans
+                        >;
+                };
+
+                navi_layer {
+                        label = "Navi";
+// -----------------------------------------------------------------------------------------
+// | DEL | INS |  |  |  |  |     | PgUp | Home |  Up  |  End  |  |  |
+// |     |     |  |  |  |  |     | PgDn | Left | Down | Right |  |  |
+// |     |     |  |  |  |  |     |  |  |  |  |  |  |
+//                |  |  |  |     |  |  |  |
+
+                        bindings = <
+   &kp DEL  &kp INS &trans &trans &trans &trans                &kp PG_UP &kp HOME &kp UP   &kp END  &trans &trans
+   &kp LCTL &trans  &trans &trans &trans &trans                &kp PG_DN &kp LEFT &kp DOWN &kp DOWN &trans &trans
+   &kp LALT &trans  &trans &trans &trans &trans                &trans &trans &trans &trans &trans &trans
+                           &trans &trans &trans                &trans &trans &trans
+                        >;
+                };
+
+                adjust_layer {
+                        label = "Adjust";
 // -----------------------------------------------------------------------------------------
 // |   |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
 // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |  |  |  |  |     |      |
 // |  |     |     |     |     |     |   |     |     |     |     |     |      |
 
                         bindings = <
-   &reset &trans &trans &trans &trans &trans                                    &trans &trans &trans &trans &trans &trans
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans &trans &trans &trans &trans &trans
-   &trans &trans &trans &trans &trans &trans                                    &trans &trans &trans &trans &trans &trans
+   &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6                    &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+   &bt BT_NXT &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans &trans &trans &trans &trans &trans
+   &bt BT_CLR &trans &trans &trans &trans &trans                                    &trans &trans &trans &trans &trans &trans
                         &trans &trans &trans                                    &trans &trans &trans
                         >;
                 };
